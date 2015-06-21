@@ -1,11 +1,69 @@
-# Site settings
-title: Jimmy Qi
-email: jimmyqwy@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Jimmy's personal blog.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://jimmyqwy.github.io/" # the base hostname & protocol for your site
-github_username:  jimmyqwy
-
-# Build settings
+# Configurations
 markdown: kramdown
+markdown_ext:  markdown,mkdown,mkdn,mkd,md
+highlighter: pygments
+
+# Permalinks
+permalink:        /blog/:year/:month/:day/:title
+
+# Setup
+title:            'Jimmy Qi'
+tagline:          'A Metro theme for Jekyll'
+description:      'A Sample blog using Jekyll Metro'
+url:              'http://localhost:4000'
+baseurl:          ''
+
+# Navigation
+navigation:
+- text: About
+  url: /about/
+- text: Resume
+  url: /resume/
+- text: Blog
+  url: /blog/
+- text: Tags
+  url: /tags/
+- text: Archive
+  url : /archive/
+
+
+# Author Details
+author:         'Jimmy Qi'
+
+#Social Media links
+linkedin:       'https://www.linkedin.com/pub/wenyuan-qi/17/7b7/2a9'
+twitter:        'http://twitter.com/jimmyqwy'
+facebook:       ''
+gplus:          ''
+
+# Google Analytics
+gahandler: 'UA-686458-2'
+
+#if footer-links-visible is 'true' the svg-icons will be shown top on the copy right.
+#else the svg icons will not exist
+footersvg: 'true'
+
+footer-links:
+  dribbble:
+  email: None
+  facebook:
+  flickr:
+  github: jimmyqwy
+  instagram:
+  linkedin:
+  pinterest:
+  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
+  google: None
+  twitter: None
+  stackoverflow: #users/4388898/peter-zhu # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+
+# Disqus
+disqushandler: 'jimmyqwy'
+
+# Blog Configurations
+paginate: 10 # Posts per page on the blog index
+paginate_path: '/blog/page:num'
+destination: ./_site
+
+# Custom vars
+version:          0.8
