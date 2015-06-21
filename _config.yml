@@ -10,7 +10,7 @@ permalink:        /blog/:year/:month/:day/:title
 title:            'Jimmy Qi'
 tagline:          'A Metro theme for Jekyll'
 description:      'A Sample blog using Jekyll Metro'
-url:              'http://localhost:4000'
+url:              'http://jimmyqwy.github.io'
 baseurl:          ''
 
 # Navigation
