@@ -149,23 +149,26 @@ theme: red
 		<h3 style="text-transform:uppercase;color:gray">Projects</h3>
 	</header>
 	<div class="col-md-9">
-            <div class="row">
-                <h4><b>Tracking and Analysis Platform</b></h4>
-		<h5>2014.10</h5>
-                <p>Design and implement large scale distributed system for both batch and streaming data processing including log tracking, transform, collection and business insights analysis.</p>
-		<p>Apply machine learning algorithms (Random forest, Decision tree, LDA, Clustering, Graphs etc) on various data insights extraction including customer behavior analysis, customer classification and targeting.</p>
-            </div>
-            <div class="row">
+		<ul>
+			<li>
+	            <h4><b>Tracking and Analysis Platform</b></h4>
+				<h5>2014.10</h5>
+	            <p>Design and implement large scale distributed system for both batch and streaming data processing including log tracking, transform, collection and business insights analysis.</p>
+				<p>Apply machine learning algorithms (Random forest, Decision tree, LDA, Clustering, Graphs etc) on various data insights extraction including customer behavior analysis, customer classification and targeting.</p>
+			</li>
+		
+            <li>
                 <h4><b>Advanced Signal Processing Toolkit on LabVIEW</b></h4>
-		<h5>2012.05</h5>
+				<h5>2012.05</h5>
                 <p>Develop and design new algorithms of signal processing technologies including Adaptive Filter, Digital Filter Designer, and System Identification</p>
-            </div>
-            <div class="row">
+            </li>
+            <li>
                 <h4><b>Image Annotation and Image Retrieval</b></h4>
-		<h5>2011.03</h5>
+		        <h5>2011.03</h5>
                 <p>Support Vector Machine with probabilistic output using sigmoid function / Image Annotation by estimating posterior probability</p>
-		<p>Random Forest Classifier for Image Annotation and Image Retrieval</p>
-            </div>
+				<p>Random Forest Classifier for Image Annotation and Image Retrieval</p>
+			</li>
+        </ul>
 	</div>
 </section>
 <hr/>
