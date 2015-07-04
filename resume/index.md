@@ -161,7 +161,7 @@ theme: red
                 <p>Develop and design new algorithms of signal processing technologies including Adaptive Filter, Digital Filter Designer, and System Identification</p>
             </div>
             <div class="row">
-                <h4><b>Tracking and Analysis Platform</b></h4>
+                <h4><b>Image Annotation and Image Retrieval</b></h4>
 		<h5>2011.03</h5>
                 <p>Support Vector Machine with probabilistic output using sigmoid function / Image Annotation by estimating posterior probability</p>
 		<p>Random Forest Classifier for Image Annotation and Image Retrieval</p>
