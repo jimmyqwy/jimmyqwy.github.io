@@ -14,49 +14,49 @@ tags:
   * Only useful purpose is iteration
   * Once consumed, can't be reused
 
-```python  
+{% highlight python %}  
 >>> a = [1,2,3,4,5]
 >>> b = [2*x for x in a]
 >>> b
 [2,4,6,8,10]
 >>> c = (2*x for x in a)
 <generator object at 0x.....>
-```
+{% endhighlight %}
 
 * Generator Functions:
-```
+{% highlight python %}
 def foo():
     ...
     yield expression
     ...
-```
+{% endhighlight %}
 
 * Generator Expressions
 
 *NOTE the ()*
-```
+{% highlight python %}
 (expression for i in s if cond1
             for j in t if cond2
             ...
             if condfinal)
-```
+{% endhighlight %}
 ==>> Same as
-```
+{% highlight python %}
 for i in s:
     if cond1:
         for j in t:
             if cond2:
                 ...
                 if condfinal: yield expression
-                ```
+                {% endhighlight %}
 
 ### Examples
-```python
+{% highlight python %}
 # use generators
 wwwlog = open("access-log")
 bytecolumn = (line.rsplit(None,1)[1] for line in wwwlog)
 bytes = (int(x) for x in bytecolumn if x != '-')
-```
+{% endhighlight %}
 * It could be a *PIPELINE*
   * Generators decouple iteration from the code that uses the results of the iteration  
   * We can plug any number of components together up front as long as they eventually produce a line sequence
@@ -64,19 +64,19 @@ bytes = (int(x) for x in bytecolumn if x != '-')
 ### Trick
 
 * Tuples to Dictionaries  
-```python
+{% highlight python %}
 colnames = ('host','referrer','user','datetime',
 'method','request','proto','status','bytes')
 log = (dict(zip(colnames,t)) for t in tuples)
 #  =>>> { 'keys' : 'values'}
-```
+{% endhighlight %}
 
 * Convert *FIELD* values (map)
-```
+{% highlight python %}
 log = field_map(log,"status", int)
 log = field_map(log,"bytes",
         lambda s: int(s) if s !='-' else 0)
-```
+{% endhighlight %}
 
 ### Tailing a File
 * use loop to look up the last line and yield when new line comes.
@@ -86,7 +86,7 @@ log = field_map(log,"bytes",
 ### Applications
 * TCP connections / UDP socket messaging
 
-```python
+{% highlight python %}
 import socket
 def receive_connections(addr):
  s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -100,9 +100,9 @@ def receive_connections(addr):
 for c,a in receive_connections(("",9000)):
  c.send("Hello World\n")
  c.close()
-```
+{% endhighlight %}
 UDP
-```python
+{% highlight python %}
 import socket
 def receive_messages(addr,maxsize):
  s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -113,10 +113,10 @@ def receive_messages(addr,maxsize):
 
 for msg, addr in receive_messages(("",10000),1024):
  print msg, "from", addr
-```
+{% endhighlight %}
 
 * I/O multiplexing
-```python
+{% highlight python %}
 # Generating I/O events on a set of sockets
 import select
 def gen_events(socks):
@@ -128,9 +128,9 @@ def gen_events(socks):
     yield "write",w
  for e in err:
     yield "error",e
-```
+{% endhighlight %}
 
-```python
+{% highlight python %}
 clientset = []
 def acceptor(sockset,addr):
  for c,a in receive_connections(addr):
@@ -148,10 +148,10 @@ for evt,s in gen_events(clientset):
  clientset.remove(s)
  else:
  print s,data
-```
+{% endhighlight %}
 
 * QUEUE
-```python
+{% highlight python %}
 def consume_queue(thequeue):
  while True:
  item = thequeue.get()
@@ -169,20 +169,20 @@ con_thr.start()
 for i in xrange(100):
   in_q.put(i)
 in_q.put(StopIteration)
-```
+{% endhighlight %}
 
 ### Multiple processes
 * Broadcasting
 *Consume a gnerator and send items to a set of consumers*
 
-```python
+{% highlight python %}
 def broadcast(source, consumers):
  for item in source:
   for c in consumers:
    c.send(item)
-```
+{% endhighlight %}
 * Network consumer
-```python
+{% highlight python %}
 import socket,pickle
 class NetConsumer(object):
  def __init__(self,addr):
@@ -193,10 +193,10 @@ class NetConsumer(object):
     self.s.sendall(pitem)
  def close(self):
     self.s.close()
-```
+{% endhighlight %}
 Consumer Thread
 
-```python
+{% highlight python %}
 import Queue, threading
 class ConsumerThread(threading.Thread):
  def __init__(self,target):
@@ -212,9 +212,9 @@ class ConsumerThread(threading.Thread):
         yield item
  def run(self):
     self.target(self.generate())  # use a generator as parameter
-```
+{% endhighlight %}
 
-```python
+{% highlight python %}
 # Usage
 def find_404(log):
  for r in (r for r in log if r['status'] == 404):
@@ -231,10 +231,10 @@ c2.start()
 lines = follow(open("access-log")) # Follow a log
 log = apache_log(lines) # Turn into records
 broadcast(log,[c1,c2]) # Broadcast to consum
-```
+{% endhighlight %}
 
 * **Multi source**  by using **Multiplexing Generators**
-```python
+{% highlight python %}
 def gen_multiplex(genlist):
     item_q = Queue.Queue()
     def run_one(source):
@@ -253,18 +253,18 @@ def gen_multiplex(genlist):
         item = item_q.get()
         if item is StopIteration: return
         yield item
-```
+{% endhighlight %}
 
 ### Important tricks
 
 * Single-argument function is easy to turn into a generator function
-```
+{% highlight python %}
 def generate(func):
  def gen_func(s):
     for item in s:
         yield func(item)
  return gen_func
-```
+{% endhighlight %}
 
 * *Shutting down*
 By using .close() <= shut down in the middle
@@ -278,7 +278,7 @@ except GeneratorExit:
 => Cannot shutdown by using signals
 
 The only way is set an instrument with a flag or check
-```python
+{% highlight python %}
 def follow(thefile,shutdown=None):
  thefile.seek(0,2)
  while True:
@@ -298,7 +298,7 @@ signal.signal(signal.SIGUSR1,sigusr1)
 lines = follow(open("access-log"),shutdown)  # <- HERE
 for line in lines:
  print line,
-```
+{% endhighlight %}
 
 
 ### Next part -> Co-routines / reverse-generator
